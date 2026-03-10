@@ -1,5 +1,4 @@
 module "lambda" {
-
   source  = "terraform-aws-modules/lambda/aws"
 
   function_name = "processor-${var.api_gateway_name}"
@@ -9,6 +8,10 @@ module "lambda" {
   runtime = "python3.14"
 
   source_path = "../code"
+
+  environment_variables = {
+    QUEUE_URL = module.sqs_queue.queue_url
+  }
 
   tags = {
     environment    = var.environment

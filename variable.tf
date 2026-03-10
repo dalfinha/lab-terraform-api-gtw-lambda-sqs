@@ -18,3 +18,8 @@ variable "github_repository_id" {
   type        = string
   default     = "GITHUB_REPOSITORY_ID_PLACEHOLDER"
 }
+
+variable "project_name" {
+  type        = string
+  default     = "workflow-lambda-sqs"
+}
