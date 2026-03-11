@@ -1,0 +1,16 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowSendMessageLimitedToMyAccountOnly",
+      "Effect": "Allow",
+      "Action": "sqs:SendMessage",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:SourceAccount": "${data.aws_caller_identity.current.account_id}"
+        }
+      }
+    }
+  ]
+}
