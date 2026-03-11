@@ -13,5 +13,7 @@ module "lambda" {
     QUEUE_URL = module.sqs_queue.queue_url
   }
 
+  role_name = module.iam_role.name
+
   tags = local.all_tags
 }
