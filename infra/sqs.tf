@@ -1,13 +1,11 @@
 module "sqs_queue" {
   source  = "terraform-aws-modules/sqs/aws"
 
-  #configuracoes padrao
-  name     = "queue-${var.project_name}"
+  name     = "sqs-queue-${var.project_name}"
 
   visibility_timeout_seconds = 30
   message_retention_seconds  = 86400
   
-  #politicas associadas ao sqs
   create_queue_policy = true
 
   queue_policy_statements = {

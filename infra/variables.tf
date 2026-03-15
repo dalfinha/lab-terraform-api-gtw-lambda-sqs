@@ -7,9 +7,9 @@ variable "environment" {
   }
 }
 
-variable "api_gateway_name" {
+variable "region" {
   type        = string
-  description = "Nome do API Gateway."
+  description = "Região onde os recursos serão criados na AWS."
 }
 
 variable "project_name" {

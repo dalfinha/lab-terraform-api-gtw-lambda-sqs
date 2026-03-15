@@ -3,7 +3,7 @@ module "lambda" {
 
   #configuracoes padrao
   function_name = "lambda-${var.project_name}"
-  description   = "Lambda para processamento de compras recebidas pelo API Gateway ${var.api_gateway_name} e processamento com a fila ${module.sqs_queue.queue_name}."
+  description   = "Lambda para processamento de compras recebidas pelo API Gateway api-${var.project_name} e processamento com a fila ${module.sqs_queue.queue_name}."
 
   handler = "lambda_function.handler"
   runtime = "python3.13"
@@ -17,7 +17,7 @@ module "lambda" {
   environment_variables = {
     QUEUE_URL = module.sqs_queue.queue_url
   }
-
+  
   #politica para enviar mensagens ao sqs
   attach_policy_statements = true
   policy_statements = {
