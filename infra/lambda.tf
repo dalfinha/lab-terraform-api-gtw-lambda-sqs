@@ -8,7 +8,6 @@ module "lambda" {
   handler = "lambda_function.handler"
   runtime = "python3.13"
 
-  create_unqualified_alias_allowed_triggers = true
   source_path = [ {
     path = "../code/lambda_function.py"
     pip_requirements = "../code/requirements.txt"
