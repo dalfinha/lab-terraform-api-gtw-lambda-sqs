@@ -19,15 +19,6 @@ module "lambda" {
     QUEUE_URL = module.sqs_queue.queue_url
   }
 
-  #associa o api gateway como trigger inicial
-  #allowed_triggers = {
-  #  AllowExecutionFromAPIGateway = {
-  #     service    = "apigateway"
-  #    source_arn = module.api_gateway.api_execution_arn
-  #    qualifier
-  #  }
-  #}
-
   #politica para enviar mensagens ao sqs
   attach_policy_statements = true
   policy_statements = {
