@@ -1,7 +1,6 @@
 variable "environment" {
   type        = string
-  description = "Ambiente (ex: dev, hom, prod)"
-  default = "dev"
+  description = "Ambiente (ex: dev, hom, prod). Será o mesmo stage da API Gateway."
   validation {
     condition     = contains(["dev", "hom", "prod"], var.environment)
     error_message = "O ambiente deve ser: dev, hom ou prod."
@@ -10,16 +9,11 @@ variable "environment" {
 
 variable "api_gateway_name" {
   type        = string
-  description = "Nome do API Gateway"
-  default     = "lab-api-gateway-events"
-}
-
-variable "github_repository_id" {
-  type        = string
-  default     = "GITHUB_REPOSITORY_ID_PLACEHOLDER"
+  description = "Nome do API Gateway."
 }
 
 variable "project_name" {
   type        = string
-  default     = "worshop-lab"
+  description = "Nome do Projeto, caso queira customizar."
+  default     = "lab-terraform-workshop"
 }
