@@ -1,0 +1,42 @@
+openapi: 3.0.1
+info:
+  title: API de Processamento de Compras
+  version: 1.0.0
+paths:
+  /compras:
+    post:
+      summary: Envia pedido de compra para processamento no lambda e fila SQS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id: {type: string}
+                product: {type: string}
+                value: {type: number}
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: {type: string}
+                  order: {type: object}
+        '500':
+          description: Erro
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: {type: string}
+                  order: {type: object}
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        httpMethod: POST
+        uri: ${lambda_arn}
+        payloadFormatVersion: "2.0"
