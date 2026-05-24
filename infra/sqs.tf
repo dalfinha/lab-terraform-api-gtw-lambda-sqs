@@ -5,7 +5,6 @@ module "sqs_queue" {
 
   visibility_timeout_seconds = 30
   message_retention_seconds  = 120
-  
   create_queue_policy = true
 
   queue_policy_statements = {
