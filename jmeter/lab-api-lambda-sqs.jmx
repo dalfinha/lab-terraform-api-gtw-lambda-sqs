@@ -7,12 +7,17 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="url_api" elementType="Argument">
             <stringProp name="Argument.name">url_api</stringProp>
-            <stringProp name="Argument.value">&lt;insira apenas a uri do api gateway gerado pela aws&gt;</stringProp>
+            <stringProp name="Argument.value">&lt;url da sua api sem https e sem stage e path, exemplo: customdomain.ihf.aws&gt;</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="rota_api" elementType="Argument">
             <stringProp name="Argument.name">rota_api</stringProp>
-            <stringProp name="Argument.value">&lt;stage/rota. ex: dev/listagem&gt;</stringProp>
+            <stringProp name="Argument.value">&lt;APENAS sua rota, exemplo: /compras,, /cancelamento&gt;</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="stage_api" elementType="Argument">
+            <stringProp name="Argument.name">stage_api</stringProp>
+            <stringProp name="Argument.value">&lt;inserir sua variavel de stage, exemplo: dev, prod, hom&gt;</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -23,9 +28,9 @@
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">10</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">stoptest</stringProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador de Iteração">
-          <stringProp name="LoopController.loops">60</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
@@ -34,7 +39,7 @@
           <stringProp name="TestPlan.comments">Cria requisições para o API Gateway da AWS (Utilizando sem Token e Autorizador)</stringProp>
           <stringProp name="HTTPSampler.domain">${url_api}</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
-          <stringProp name="HTTPSampler.path">${rota_api}</stringProp>
+          <stringProp name="HTTPSampler.path">${stage_api}/${rota_api}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
